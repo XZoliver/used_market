@@ -21,4 +21,9 @@ public class User implements Serializable {
     private String sex ;
     private String university ;
 
+    public User(String username ,String password, String phone) {
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+    }
 }

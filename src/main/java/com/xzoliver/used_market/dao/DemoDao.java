@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
  **/
 @Mapper
 public interface DemoDao {
-    @Select("select * from user where id=#{id}")
+    @Select("select * from user  where id=#{id}")
     User userInfo(int id);
 }
