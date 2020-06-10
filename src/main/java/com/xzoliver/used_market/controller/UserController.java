@@ -4,6 +4,8 @@ import com.xzoliver.used_market.entity.User;
 import com.xzoliver.used_market.serviceimpl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired
+
     private UserServiceImpl userService ;
 
     /**
@@ -26,8 +28,8 @@ public class UserController {
      * 创建时间：  2020/5/18
      * 注释：用户注册
      **/
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(HttpServletRequest req, HttpSession session ,String username , String phone , String password) {
+    @PostMapping("register")
+    public String register(@RequestBody HttpServletRequest req, HttpSession session , String username , String phone , String password) {
         User user = new User(username,password,phone);
         int log = userService.register(user);
         if (log == 0){
@@ -36,10 +38,7 @@ public class UserController {
             return "注册成功";
         }
     }
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(){
-        return "register" ;
-    }
+
 
 
 }
